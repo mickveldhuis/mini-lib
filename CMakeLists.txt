@@ -7,13 +7,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 enable_testing()
 
-include(FetchContent)
+Include(FetchContent)
+
 FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG        52eb8108c5bdec04579160ae17225d66034bd723 # release-1.17.0
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.8.1 # or a later release
 )
 
-FetchContent_MakeAvailable(googletest)
+FetchContent_MakeAvailable(Catch2)
+
 
 add_subdirectory(threadpool)
