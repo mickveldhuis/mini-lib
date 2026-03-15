@@ -1,8 +1,8 @@
-#include <gtest/gtest.h>
+#include <catch2/catch_test_macros.hpp>
 
 #include "threadpool.hpp"
 
-TEST(ThreadPoolTest, test_thread_pool) {
+TEST_CASE("Test ThreadPool", "[threadpool]") {
   using namespace std::chrono_literals;
 
   const int n_tasks = 16;
@@ -21,6 +21,6 @@ TEST(ThreadPoolTest, test_thread_pool) {
   pool.WaitUntilFinished();
 
   for (int i = 0; i < n_tasks; ++i) {
-    EXPECT_EQ(squares[i], i * i);
+    CHECK(squares[i] == i * i);
   }
 }
