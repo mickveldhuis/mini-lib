@@ -1,21 +1,13 @@
 cmake_minimum_required(VERSION 3.23)
 
-project(small-cpp-projects CXX)
+project(mini-lib CXX)
 
 set(CMAKE_CXX_STANDARD 26)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-enable_testing()
-
-Include(FetchContent)
-
-FetchContent_Declare(
-  Catch2
-  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG        v3.8.1 # or a later release
+add_library(mini-lib STATIC src/argparser)
+target_include_directories(mini-lib PUBLIC
+    "${CMAKE_SOURCE_DIR}/include"
 )
 
-FetchContent_MakeAvailable(Catch2)
-
-add_subdirectory(threadpool)
-add_subdirectory(argparser)
+add_subdirectory(tests)
