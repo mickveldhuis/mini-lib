@@ -1,21 +1,15 @@
-enable_testing()
+include(CTest)
+include(Catch)
 
-Include(FetchContent)
-
-FetchContent_Declare(
-  Catch2
-  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG        v3.8.1 # or a later release
+# Define test sources
+set(TESTS
+    tthreadpool
+    targumentparser
 )
 
-FetchContent_MakeAvailable(Catch2)
+foreach(target ${TESTS})
+    add_executable(${target} "${target}.cpp")
+    target_link_libraries(${target} PRIVATE mini-lib Catch2::Catch2WithMain)
 
-add_executable(testthreadpool tthreadpool.cpp)
-target_link_libraries(testthreadpool PRIVATE mini-lib Catch2::Catch2WithMain)
-
-add_executable(testargparser targumentparser.cpp)
-target_link_libraries(testargparser PRIVATE mini-lib Catch2::Catch2WithMain)
-
-include(Catch)
-catch_discover_tests(testthreadpool)
-catch_discover_tests(testargparser)
+    catch_discover_tests(${target})
+endforeach()
