@@ -1,3 +1,5 @@
-#include "argumentparser.hpp"
+#include "mini-lib/argumentparser.hpp"
 
-ArgumentParser::ArgumentParser(std::string_view name, std::string_view description) : name_{name}, description_{description} {}
+ArgumentParser::ArgumentParser(std::string_view name,
+                               std::string_view description)
+    : name_{name}, description_{description} {}

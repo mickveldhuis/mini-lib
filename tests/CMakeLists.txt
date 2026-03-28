@@ -10,10 +10,10 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Catch2)
 
-add_executable(testthreadpool testthreadpool.cpp)
+add_executable(testthreadpool tthreadpool.cpp)
 target_link_libraries(testthreadpool PRIVATE mini-lib Catch2::Catch2WithMain)
 
-add_executable(testargparser testargparser.cpp)
+add_executable(testargparser targumentparser.cpp)
 target_link_libraries(testargparser PRIVATE mini-lib Catch2::Catch2WithMain)
 
 include(Catch)
