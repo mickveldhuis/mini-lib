@@ -6,9 +6,14 @@
 #include <string>
 #include <string_view>
 #include <system_error>
+#include <variant>
 
+/// Struct that describes the parsed argument.
+/// This includes:
+/// - Name of the argument
+/// - Value (e.g. 1, "bla", or true)
 struct Argument {
-  std::string_view value;
+  std::variant<bool, float, std::string> value;
 
   template <typename NumericType> std::optional<NumericType> as_number() {
     int result{};
@@ -45,16 +50,22 @@ class ArgumentParser {
 public:
   ArgumentParser(std::string_view name, std::string_view description);
 
+  /// Parse the input argument string.
   std::optional<ParseResult> parse(std::string_view arguments);
 
+  /// Add a named argument, e.g. -h / --help.
   void add_argument(const std::string &short_name, const std::string &long_name,
                     const std::string &help);
+
+  /// Add a positional argument.
   void add_argument(const std::string &positional_name,
                     const std::string &help);
 
+  /// Print help message.
   void help() const;
 
 private:
+  ///
   void consume_arguments();
   void consume_argument();
 
