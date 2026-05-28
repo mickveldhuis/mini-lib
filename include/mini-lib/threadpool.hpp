@@ -1,11 +1,10 @@
 #pragma once
 
+#include <condition_variable>
 #include <functional>
 #include <mutex>
-#include <condition_variable>
 #include <queue>
 #include <thread>
-
 
 /// Basic thread pool implementation.
 class ThreadPool {
